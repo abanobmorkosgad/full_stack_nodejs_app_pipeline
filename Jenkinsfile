@@ -5,7 +5,7 @@ pipeline {
         REPO_SERVER = "339712792713.dkr.ecr.us-east-1.amazonaws.com"
         REPO_NAME_BACKEND = "${REPO_SERVER}/badreads-backend"
         REPO_NAME_FRONTEND = "${REPO_SERVER}/badreads-frontend"
-        IMAGE_VERSION = $BUILD_NUMBER
+        IMAGE_VERSION = "${BUILD_NUMBER}"
     }
 
     stages {

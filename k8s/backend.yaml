@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      volumes:
+      - name: backend
+        persistentVolumeClaim:
+          claimName: backend-pvc
+      containers:
+      - name: backend
+        image: abanobmorkos10/badreads-back:latest
+        ports:
+        - containerPort: 4000
+        volumeMounts:
+        - name: backend
+          mountPath: /app/public/authors
+        - name: backend
+          mountPath: /app/public/books
+        - name: backend
+          mountPath: /app/public/users
+        env:
+          - name: MONGOHOST
+            value: "mongo-service:27017"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 4000
+      targetPort: 4000

@@ -10,19 +10,10 @@ pipeline {
 
     stages {
 
-        stage("build app") {
-            steps {
-                script {
-                    echo "building the app ..."
-                    sh "mvn clean package"
-                }
-            }
-        }
-
         stage("build image") {
             steps {
                 script {
-                    echo "building docker image ..."
+                    echo "building docker images ..."
                     withCredentials([
                         usernamePassword(credentialsId: 'ecr-credentials', usernameVariable: 'USER', passwordVariable: 'PASS')
                     ]){

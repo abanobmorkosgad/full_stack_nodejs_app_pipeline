@@ -70,7 +70,7 @@ pipeline {
                 }
                 withCredentials([file(credentialsId:'kube-config', variable:'KUBECONFIG')]){
                 script{
-                    sh 'kubectlapply -f k8s'
+                    sh 'kubectl apply -f k8s'
                     }
                 }
             }

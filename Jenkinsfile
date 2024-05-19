@@ -64,9 +64,13 @@ pipeline {
             }
             steps {
                 echo 'Deploying to eks cluster ... '
+                environment {
+                    AWS_ACCESS_KEY_ID = credentials("aws_access_key_id")
+                    AWS_SECRET_ACCESS_KEY = credentials("aws_secret_access_key")
+                }
                 withCredentials([file(credentialsId:'kube-config', variable:'KUBECONFIG')]){
                 script{
-                    sh 'kubectl --kubeconfig=KUBECONFIG apply -f k8s'
+                    sh 'kubectlapply -f k8s'
                     }
                 }
             }

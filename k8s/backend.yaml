@@ -12,22 +12,22 @@ spec:
       labels:
         app: backend
     spec:
-      volumes:
-      - name: backend
-        persistentVolumeClaim:
-          claimName: backend-pvc
+      # volumes:
+      # - name: backend
+      #   persistentVolumeClaim:
+      #     claimName: backend-pvc
       containers:
       - name: backend
         image: abanobmorkos10/badreads-back:latest
         ports:
         - containerPort: 4000
-        volumeMounts:
-        - name: backend
-          mountPath: /app/public/authors
-        - name: backend
-          mountPath: /app/public/books
-        - name: backend
-          mountPath: /app/public/users
+        # volumeMounts:
+        # - name: backend
+        #   mountPath: /app/public/authors
+        # - name: backend
+        #   mountPath: /app/public/books
+        # - name: backend
+        #   mountPath: /app/public/users
         env:
           - name: MONGOHOST
             value: "mongo-service:27017"

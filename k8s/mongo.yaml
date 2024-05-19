@@ -11,18 +11,18 @@ spec:
       labels:
         app: mongo
     spec:
-      volumes:
-      - name: mongo
-        persistentVolumeClaim:
-          claimName: mongo-pvc
+      # volumes:
+      # - name: mongo
+      #   persistentVolumeClaim:
+      #     claimName: mongo-pvc
       containers:
       - name: mongo
         image: mongo:4.2.8
         ports:
         - containerPort: 27017
-        volumeMounts:
-        - name: mongo
-          mountPath: /data/db
+        # volumeMounts:
+        # - name: mongo
+        #   mountPath: /data/db
         env:
           - name: MONGO_INITDB_DATABASE
             value: admin

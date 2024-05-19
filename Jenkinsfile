@@ -65,8 +65,8 @@ pipeline {
             steps {
                 echo 'Deploying to eks cluster ... '
                 withCredentials([file(credentialsId:'kube-config', variable:'KUBECONFIG')]){
-                script{
-                    sh 'kubectl apply -f k8s'
+                    script{
+                        sh 'kubectl apply -f k8s'
                     }
                 }
             }
